@@ -1,0 +1,5 @@
+== README
+
+AlphaCamp Webcamp mini project CRUD manager
+
+rails new <your project name> --skip-test-unit
