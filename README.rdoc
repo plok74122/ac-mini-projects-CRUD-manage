@@ -1,5 +1,25 @@
 == README
 
-AlphaCamp Webcamp mini project CRUD manager
+#AlphaCamp Webcamp mini project CRUD manager
 
-rails new <your project name> --skip-test-unit
+~ rails new <your project name> --skip-test-unit
+
+You should create a new repository in Github.
+
+##Create some model
+you can use this command below:
+~ rails g model <your model name>
+
+##Set up relationship between two models
+example:
+class Book < ActiveRecord::Base
+  belongs_to :book_condition
+end
+class BookCondition < ActiveRecord::Base
+  has_many :books
+end
+
+##Create necessary basic data.
+~ rake db:seed
+This command basically executes whatever code you write in db/seeds.rb file of your application.
+Though can write any code in this file, by convention you should write code which populate your database with the basic data.
