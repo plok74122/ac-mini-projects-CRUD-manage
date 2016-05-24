@@ -23,3 +23,6 @@ end
 ~ rake db:seed
 This command basically executes whatever code you write in db/seeds.rb file of your application.
 Though can write any code in this file, by convention you should write code which populate your database with the basic data.
+
+##How to Use Validations?
+https://ihower.tw/rails4/activerecord-lifecycle.html
