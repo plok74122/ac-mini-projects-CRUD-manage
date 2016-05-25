@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :find_book, :only => [:show ,:edit ,:update ,:destroy]
 
   def index
-    @book=Book.includes(:book_condition).all
+    @book=Book.includes(:book_condition).page(params[:page]).per(10)
   end
 
   def show
