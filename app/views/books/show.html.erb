@@ -1,15 +1,27 @@
-Name: <%= @book.name %><br/>
-<% if @book.errors.any? %>
-    <ul>
-      <% @book.errors.full_messages.each do |msg| %>
-          <li style="color:red"><%= msg %></li>
-      <% end %>
-    </ul>
-<% end %>
-Description: <%= @book.description %><br/>
-Cost: <%= @book.cost %><br/>
-Bookcondition: <%= @book.book_condition.name %><br/>
-Buy_time: <%= @book.buy_time.to_s(:short) %><br/>
-Publish_date: <%= @book.publish_date %><br/>
+<div class="row">
+  <div class="col-md-12">
+    <% if @book.errors.any? %>
+        <ul>
+          <% @book.errors.full_messages.each do |msg| %>
+              <li style="color:red"><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+    <dl>
+      <dt>Name</dt>
+      <dd><%= @book.name %></dd>
+      <dt>Description</dt>
+      <dd><%= @book.description %></dd>
+      <dt>Cost</dt>
+      <dd><%= @book.cost %></dd>
+      <dt>Bookcondition</dt>
+      <dd><%= @book.book_condition.name %></dd>
+      <dt>Buy_time</dt>
+      <dd><%= @book.buy_time.to_s(:short) %></dd>
+      <dt>Publish_date</dt>
+      <dd><%= @book.publish_date %></dd>
+    </dl>
+  </div>
+  <%= link_to 'Books list', books_path , :class => 'btn' %>
+</div>
 
-<%= link_to 'Books list', books_path%>

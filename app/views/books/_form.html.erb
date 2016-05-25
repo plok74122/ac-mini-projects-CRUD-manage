@@ -6,17 +6,31 @@
     </ul>
 <% end %>
 <%= form_for book do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-    <%= f.label :cost %>
-    <%= f.text_field :cost %>
-    <%= f.label :book_condition_id %>
-    <%= f.select :book_condition_id, BookCondition.all.collect { |book_condition| [book_condition.name, book_condition.id] }, {:selected => book.book_condition_id, include_blank: true} %>
-    <%= f.label :buy_time %>
-    <%= f.datetime_select :buy_time %>
-    <%= f.label :publish_date %>
-    <%= f.date_select :publish_date %>
-    <%= f.submit %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cost %>
+      <%= f.text_field :cost, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :book_condition_id %>
+      <%= f.select :book_condition_id, BookCondition.all.collect { |book_condition| [book_condition.name, book_condition.id] }, {:selected => book.book_condition_id, include_blank: true}, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :buy_time %>
+      <%= f.datetime_select :buy_time, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :publish_date %>
+      <%= f.date_select :publish_date, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit :class => 'btn' %>
+    </div>
 <% end %>

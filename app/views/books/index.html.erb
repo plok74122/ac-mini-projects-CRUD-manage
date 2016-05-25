@@ -1,32 +1,48 @@
-<h1>Book List</h1>
-<table>
-  <tr>
-    <th>Book Name</th>
-    <th>Description</th>
-    <th>Cost</th>
-    <th>Buy Time</th>
-    <th>Publish date</th>
-    <th>Book Condition</th>
-    <th>Edit</th>
-    <th>Delete</th>
-  </tr>
-  <% @book_list.each do |book| %>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Book List</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table-striped ">
       <tr>
-        <td><%= link_to book.name , book_path(book) %></td>
-        <td><%= book.description %></td>
-        <td><%= book.cost %></td>
-        <td><%= book.buy_time.to_s(:short) %></td>
-        <td><%= book.publish_date %></td>
-        <td><%= book.book_condition.name %></td>
-        <td><%= link_to "edit", {'edit' => book.id, 'page' => @book_list.current_page} %></td>
-        <td><%= link_to "delete", book_path(:id => book , :page => @book_list.current_page), :method => :delete %></td>
+        <th>Book Name</th>
+        <th>Description</th>
+        <th>Cost</th>
+        <th>Buy Time</th>
+        <th>Publish date</th>
+        <th>Book Condition</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
-  <% end %>
-</table>
-<%= paginate @book_list %>
-<% if @book.new_record? %>
-    <h1>Create a new book</h1>
-<% else %>
-    <h1>Edit book id <%= @book.id %></h1>
-<% end %>
-<%= render "form" , :book => @book %>
+      <% @book_list.each do |book| %>
+          <tr>
+            <td><%= link_to book.name, book_path(book) %></td>
+            <td><%= book.description %></td>
+            <td><%= book.cost %></td>
+            <td><%= book.buy_time.to_s(:short) %></td>
+            <td><%= book.publish_date %></td>
+            <td><%= book.book_condition.name %></td>
+            <td><%= link_to "edit", { 'edit' => book.id, 'page' => @book_list.current_page }, :class => 'btn btn-success' %></td>
+            <td><%= link_to "delete", book_path(:id => book, :page => @book_list.current_page), :method => :delete, :class => 'btn btn-danger' %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= paginate @book_list %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <% if @book.new_record? %>
+        <h1>Create a new book</h1>
+    <% else %>
+        <h1>Edit book id <%= @book.id %></h1>
+    <% end %>
+    <%= render "form", :book => @book %>
+  </div>
+</div>
