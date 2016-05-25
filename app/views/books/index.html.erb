@@ -6,6 +6,7 @@
     <th>Cost</th>
     <th>Book Condition</th>
     <th>Edit</th>
+    <th>Delete</th>
   </tr>
   <% @book_list.each do |book| %>
       <tr>
@@ -13,7 +14,8 @@
         <td><%= book.description %></td>
         <td><%= book.cost %></td>
         <td><%= book.book_condition.name %></td>
-        <td><%= link_to "edit", {'edit' => book.id , 'page'=> @book_list.current_page} %></td>
+        <td><%= link_to "edit", {'edit' => book.id, 'page' => @book_list.current_page} %></td>
+        <td><%= link_to "delete", book_path(:id => book , :page => @book_list.current_page), :method => :delete %></td>
       </tr>
   <% end %>
 </table>

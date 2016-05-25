@@ -51,7 +51,7 @@ class BooksController < ApplicationController
     else
       @book.destroy
       flash[:notice] = "Successfully delete book #{@book.id}!"
-      redirect_to books_path
+      redirect_to books_path(:page => params[:page])
     end
   end
 
