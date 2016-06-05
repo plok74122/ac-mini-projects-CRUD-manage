@@ -1,4 +1,16 @@
-Name: <%= @book.name %><br />
-Description: <%=  @book.description %><br />
-Cost: <%= @book.cost %><br />
-Bookcondition: <%= @book.book_condition.name %><br />
+Name: <%= @book.name %><br/>
+<% if @book.errors.any? %>
+    <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+          <li style="color:red"><%= msg %></li>
+      <% end %>
+    </ul>
+<% end %>
+Description: <%= @book.description %><br/>
+Cost: <%= @book.cost %><br/>
+Bookcondition: <%= @book.book_condition.name %><br/>
+
+
+<%= form_for @book, :url => book_path(@book), :method => 'DELETE' do |f| %>
+<%= f.submit 'destroy'%>
+<% end %>

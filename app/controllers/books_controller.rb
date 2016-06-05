@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
-  before_action :set_book_params, :only => :create
-  before_action :find_book, :only => :show
+  before_action :set_book_params, :only => [:create , :update]
+  before_action :find_book, :only => [:show ,:edit ,:update ,:destroy]
+
+  def index
+    @book=Book.includes(:book_condition).all
+  end
 
   def show
     if !@book.present?
@@ -19,6 +23,23 @@ class BooksController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+
+  end
+
+  def update
+    if @book.update(set_book_params)
+      redirect_to book_path(@book)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @book.destroy
+    redirect_to books_path
   end
 
   private

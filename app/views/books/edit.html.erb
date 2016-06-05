@@ -1,0 +1,19 @@
+Edit for <%= @book.name %>
+<% if @book.errors.any? %>
+    <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+          <li style="color:red"><%= msg %></li>
+      <% end %>
+    </ul>
+<% end %>
+<%= form_for @book do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <%= f.label :cost %>
+    <%= f.text_field :cost %>
+    <%= f.label :book_condition_id %>
+    <%= f.select :book_condition_id, BookCondition.all.collect { |book_condition| [book_condition.name, book_condition.id] }, {:selected => @book.book_condition_id, include_blank: true} %>
+    <%= f.submit%>
+<% end %>
