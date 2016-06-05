@@ -9,8 +9,7 @@ Name: <%= @book.name %><br/>
 Description: <%= @book.description %><br/>
 Cost: <%= @book.cost %><br/>
 Bookcondition: <%= @book.book_condition.name %><br/>
+Buy_time: <%= @book.buy_time.to_s(:short) %><br/>
+Publish_date: <%= @book.publish_date %><br/>
 
-
-<%= form_for @book, :url => book_path(@book), :method => 'DELETE' do |f| %>
-<%= f.submit 'destroy'%>
-<% end %>
+<%= link_to 'Books list', books_path%>

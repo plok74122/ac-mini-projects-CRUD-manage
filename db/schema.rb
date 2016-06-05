@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523081212) do
+ActiveRecord::Schema.define(version: 20160525042049) do
 
   create_table "book_conditions", force: :cascade do |t|
     t.string   "name",       null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20160523081212) do
     t.integer  "book_condition_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.datetime "buy_time"
+    t.date     "publish_date"
   end
 
 end
