@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set_book_params, :only => [:create , :update]
-  before_action :find_book, :only => [:show ,:edit ,:update ,:destroy]
+  before_action :set_book_params, :only => [:create, :update]
+  before_action :find_book, :only => [:show, :edit, :update, :destroy]
 
   def index
     @book=Book.includes(:book_condition).page(params[:page]).per(10)
@@ -8,6 +8,7 @@ class BooksController < ApplicationController
 
   def show
     if !@book.present?
+      flash[:alert] = 'This book id is not exist! . Create it?'
       redirect_to new_book_path
     end
   end
@@ -19,6 +20,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(set_book_params)
     if @book.save
+      flash[:notice] = "Successfully created a new book!"
       redirect_to book_path(@book)
     else
       render :new
@@ -31,6 +33,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(set_book_params)
+      flash[:notice] = "Successfully updated this book!"
       redirect_to book_path(@book)
     else
       render :edit
@@ -38,8 +41,14 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book.destroy
-    redirect_to books_path
+    if !@book.present?
+      flash[:notice] = "This book is not exist!"
+      redirect_to books_path
+    else
+      @book.destroy
+      flash[:notice] = "Successfully delete book #{@book.id}!"
+      redirect_to books_path
+    end
   end
 
   private
