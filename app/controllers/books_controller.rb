@@ -3,7 +3,11 @@ class BooksController < ApplicationController
   before_action :find_book, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @book=Book.includes(:book_condition).page(params[:page]).per(10)
+    @book_list=Book.includes(:book_condition).page(params[:page]).per(10)
+    @book = Book.includes(:book_condition).find_by_id(params[:edit]) || Book.new
+    if @book.new_record?
+      flash[:alert] = 'This book id is not exist! . Create it?'
+    end
   end
 
   def show
@@ -23,7 +27,7 @@ class BooksController < ApplicationController
       flash[:notice] = "Successfully created a new book!"
       redirect_to book_path(@book)
     else
-      render :new
+      render :index
     end
   end
 
